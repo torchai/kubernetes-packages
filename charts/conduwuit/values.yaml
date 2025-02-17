@@ -1,6 +1,6 @@
 image:
-  repository: girlbossceo/conduwuit
-  tag: "latest"
+  repository: ghcr.io/girlbossceo/conduwuit
+  tag: "main"
   pullPolicy: Always
 
 config:
