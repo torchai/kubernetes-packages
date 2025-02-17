@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "conduwuit.fullname" . }}-config
+  labels:
+    {{- include "conduwuit.labels" . | nindent 4 }}
+data:
+  conduwuit.toml: |
+    [global]
+    server_name = "{{ .Values.config.server_name }}"
+    address = ["::"]
+    port = 8008
+    database_path = "/var/lib/conduwuit"
+
+    #database_backup_path = "/opt/conduwuit-db-backups"
+    #database_backups_to_keep = 1
+
+    new_user_displayname_suffix = "{{ .Values.config.new_user_displayname_suffix }}"
+
+    max_request_size = {{ .Values.config.max_request_size }}
+
+    allow_registration = {{ .Values.config.allow_registration }}
+    {{- if .Values.config.allow_registration }}
+    registration_token_file = "/etc/conduwuit/reg_token"
+    {{- end }}
+
+    allow_federation = {{ .Values.config.allow_federation }}
+
+    # Additional config
+    {{ .Values.extraConfig }}
+
+    [global.well_known]
+    client = "https://{{ tpl (.Values.ingress.hostname) $ | default (printf "matrix.%s" .Values.config.server_name) }}"
+    server = "{{ tpl (.Values.ingress.hostname) $ | default (printf "matrix.%s" .Values.config.server_name) }}:443"
+
+    #support_page =
+    #support_role =
+    #support_email =
+    #support_mxid =
