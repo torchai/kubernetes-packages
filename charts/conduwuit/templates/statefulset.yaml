@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "conduwuit.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.config.replicas }}
   serviceName: {{ template "conduwuit.fullname" . }}
   podManagementPolicy: Parallel
   selector:
@@ -72,15 +72,17 @@ spec:
         - name: config
           configMap:
             name: {{ template "conduwuit.fullname" . }}-config
-        - name: data
-          {{- if .Values.persistence.data.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistence.data.existingClaim | default (printf "%s-%s" (include "conduwuit.fullname" .) "data") }}
-          {{- else }}
-          emptyDir: {}
-          {{- end }}
         {{- if .Values.config.allow_registration }}
         - name: registration-secret
           secret:
             secretName: conduit-registration-secret
         {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "{{ .Values.persistence.data.accessMode }}" ]
+        resources:
+          requests:
+            storage: {{ .Values.persistence.data.size }}
+        storageClassName: {{ .Values.persistence.data.storageClass | quote }}
