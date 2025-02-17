@@ -3,6 +3,22 @@ entries:
   conduwuit:
   - apiVersion: v1
     appVersion: 0.4.6
+    created: "2025-02-17T18:04:59.890407489Z"
+    description: a very cool, featureful fork of Conduit
+    digest: 2fe09ed384f5df1639dbc7e5a0ba538c6f8f7cfcb15a14a6146b67187a2a2005
+    home: https://github.com/girlbossceo/conduwuit
+    keywords:
+    - conduwuit
+    - matrix
+    - homeserver
+    name: conduwuit
+    sources:
+    - https://github.com/girlbossceo/conduwuit
+    urls:
+    - https://github.com/torchai/kubernetes-packages/releases/download/conduwuit-0.1.2/conduwuit-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: 0.4.6
     created: "2025-02-17T07:54:16.487434585Z"
     description: a very cool, featureful fork of Conduit
     digest: 9cfab5405282754ba157696f3f0cfa68ca2c831cdfed37f0380fb035f7094755
@@ -17,4 +33,4 @@ entries:
     urls:
     - https://github.com/torchai/kubernetes-packages/releases/download/conduwuit-0.1.1/conduwuit-0.1.1.tgz
     version: 0.1.1
-generated: "2025-02-17T07:54:16.487448441Z"
+generated: "2025-02-17T18:04:59.890415844Z"
