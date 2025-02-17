@@ -1,5 +1,5 @@
 config:
-  replicas: 1  # Number of replicas for the StatefulSet
+  replicas: 1 # Number of replicas for the StatefulSet
   server_name: "your.server.name"
   new_user_displayname_suffix: ""
   max_request_size: "20971520"
@@ -58,7 +58,7 @@ persistence:
     existingClaim:
     storageClass:
     accessMode: ReadWriteOnce
-    size: 16Gi
+    size: 8Gi
 
 resources:
   requests:

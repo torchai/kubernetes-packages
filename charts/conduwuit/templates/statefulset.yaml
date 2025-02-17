@@ -8,6 +8,8 @@ spec:
   replicas: {{ .Values.config.replicas }}
   serviceName: {{ template "conduwuit.fullname" . }}
   podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       {{- include "conduwuit.labels" . | nindent 6 }}
